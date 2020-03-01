@@ -65,3 +65,9 @@ def move(request):
 def say(request):
     # IMPLEMENT
     return JsonResponse({'error':"Not yet implemented"}, safe=True, status=500)
+
+
+# Get Room endpoint
+@api_view(["GET"])
+def room(request):
+pass
