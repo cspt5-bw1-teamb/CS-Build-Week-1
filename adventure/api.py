@@ -67,7 +67,17 @@ def say(request):
     return JsonResponse({'error':"Not yet implemented"}, safe=True, status=500)
 
 
-# Get Room endpoint
+# Get Room endpoint work in progress
 @api_view(["GET"])
-def room(request):
-pass
+def get_room(request):
+    user = request.user
+    room_info = {}
+    query_set = Room.objects.all
+
+    for room in query_set:
+        room_info[room.room_id] = {}
+        room_info[room.room_id].update({
+            "x": room.x,
+            "y": room.y,
+            "exits": {}
+        })
