@@ -69,15 +69,17 @@ def say(request):
 
 # Get Room endpoint work in progress
 @api_view(["GET"])
-def get_room(request):
+def get_rooms(request):
     user = request.user
-    room_info = {}
-    query_set = Room.objects.all
+    player = user.player
+    player_id = player.id
 
-    for room in query_set:
-        room_info[room.room_id] = {}
-        room_info[room.room_id].update({
-            "x": room.x,
-            "y": room.y,
-            "exits": {}
-        })
+    return JsonResponse([{
+        'room_id': index,
+        'north': room.n_to != 0,
+        'south': room.s_to != 0,
+        'east': room.e_to != 0,
+        'title': room.title,
+        'description': room.description,
+        'players': room.allPlayerNames()
+    }])for index, room in enumerate(Room.objects.all())], safe=False
