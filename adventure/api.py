@@ -84,4 +84,5 @@ def get_rooms(request):
         'description': room.description,
         'players': room.allPlayerNames()
     # for index, room in enumerate(Room.objects.all())], safe= False
+    
     }])
