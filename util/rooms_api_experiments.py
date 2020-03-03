@@ -7,3 +7,4 @@ for room in Room.objects.all():
 
 
 print(room_list)
+
