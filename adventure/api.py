@@ -10,6 +10,15 @@ import json
 
 # instantiate pusher
 # pusher = Pusher(app_id=config('PUSHER_APP_ID'), key=config('PUSHER_KEY'), secret=config('PUSHER_SECRET'), cluster=config('PUSHER_CLUSTER'))
+@csrf_exempt
+@api_view(["GET"])
+def rooms(request):
+    room_list = []
+    for room in Room.objects.all():
+        room_list.append({"id":room.id, "title":room.title, "description": room.description, "n_to":room.n_to, "s_to":room.s_to, "e_to":room.e_to, "w_to":room.w_to})
+    return room_list
+
+
 
 @csrf_exempt
 @api_view(["GET"])
